@@ -53,7 +53,10 @@
       <section class="glass" aria-labelledby="shots-title">
         <div class="section-inner">
           <h2 id="shots-title" data-i18n="shotsTitle"></h2>
-          <div class="shots" id="shots-gallery" aria-live="polite"></div>
+          <div class="shots-carousel-wrap">
+            <div class="shots" id="shots-gallery" role="region" aria-roledescription="carousel" aria-live="polite"></div>
+            <p class="shots-hint" data-i18n="shotsHint"></p>
+          </div>
         </div>
       </section>
 

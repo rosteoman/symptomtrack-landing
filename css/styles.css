@@ -299,19 +299,34 @@ section h2 {
   color: var(--text-secondary);
 }
 
-/* Screenshots */
+/* Screenshots — horizontal scroll carousel */
+.shots-carousel-wrap {
+  margin-inline: -0.5rem;
+}
+
 .shots {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-direction: row;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.shots::-webkit-scrollbar {
+  display: none;
 }
 
 .shot {
-  aspect-ratio: auto;
-  max-height: none;
-  margin-inline: auto;
-  max-width: 280px;
-  width: 100%;
+  flex: 0 0 min(78vw, 260px);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  margin-inline: 0;
+  max-width: none;
+  width: auto;
   border-radius: 24px;
   border: 1px solid var(--glass-border);
   background: rgba(255, 255, 255, 0.04);
@@ -322,8 +337,17 @@ section h2 {
 .shot img {
   width: 100%;
   height: auto;
+  max-height: min(52vh, 480px);
+  object-fit: contain;
+  object-position: top center;
   display: block;
-  vertical-align: middle;
+}
+
+.shots-hint {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
 }
 
 .shot-caption {
