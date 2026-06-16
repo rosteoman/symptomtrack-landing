@@ -19,7 +19,6 @@
       f4: "Notes, sleep, and temperature in one place",
       f5: "Your health data stays on your device",
       shotsTitle: "Screenshots",
-      shotCaption: "SymptomTrack on iPhone — add your App Store screenshots here",
       whoTitle: "Who it's for",
       whoBody:
         "Built with neurodivergent users in mind (ADHD, autism, and similar needs): simplicity, continuity, less cognitive load. Anyone who wants a clear record for their doctor can use it too.",
@@ -57,7 +56,6 @@
       f4: "Notas, sueño y temperatura en un solo sitio",
       f5: "Tus datos de salud permanecen en tu dispositivo",
       shotsTitle: "Capturas",
-      shotCaption: "SymptomTrack en iPhone — añade aquí tus capturas de App Store",
       whoTitle: "Para quién es",
       whoBody:
         "Pensada para personas neurodivergentes (TDAH, autismo y necesidades similares): simplicidad, continuidad, menos carga cognitiva. También sirve a quien quiera un registro claro para el médico.",
@@ -83,6 +81,8 @@
     },
   };
 
+  const SCREENSHOT_COUNT = 7;
+
   const LEGAL_URL = "https://rvbservices.wixsite.com/babenberg-studies/legal";
   const CONTACT_EMAIL = "contact@babenberg-studies.com";
 
@@ -96,6 +96,24 @@
 
   function t(key) {
     return STRINGS[lang][key] || STRINGS.en[key] || "";
+  }
+
+  function renderShots() {
+    const gallery = document.getElementById("shots-gallery");
+    if (!gallery) return;
+    gallery.innerHTML = "";
+    for (let i = 1; i <= SCREENSHOT_COUNT; i += 1) {
+      const num = String(i).padStart(2, "0");
+      const wrap = document.createElement("div");
+      wrap.className = "shot";
+      const img = document.createElement("img");
+      img.src = `assets/screenshots/${lang}/${num}.png`;
+      img.alt = `SymptomTrack ${i}`;
+      img.loading = i <= 2 ? "eager" : "lazy";
+      img.width = 280;
+      wrap.appendChild(img);
+      gallery.appendChild(wrap);
+    }
   }
 
   function applyLang() {
@@ -113,6 +131,8 @@
 
     document.getElementById("btn-en")?.classList.toggle("active", lang === "en");
     document.getElementById("btn-es")?.classList.toggle("active", lang === "es");
+
+    renderShots();
   }
 
   document.getElementById("btn-en")?.addEventListener("click", () => {

@@ -1,8 +1,8 @@
 # SymptomTrack — landing page (source copy)
 
-Canonical deploy target: **public repo** [`babenberg-studies/babenberg-studies.github.io`](https://github.com/babenberg-studies/babenberg-studies.github.io).
+Canonical deploy target: **public repo** [`rosteoman/symptomtrack-landing`](https://github.com/rosteoman/symptomtrack-landing).
 
-Live URL: **https://babenberg-studies.github.io/**
+Live URL: **https://rosteoman.github.io/symptomtrack-landing/**
 
 The iOS app stays in the **private** repo `rosteoman/SymptomTrack`. Only this static site is public.
 
