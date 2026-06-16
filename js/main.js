@@ -20,10 +20,9 @@
       f5: "Your health data stays on your device",
       shotsTitle: "Screenshots",
       shotsHint: "Swipe horizontally to see more",
-      whoTitle: "Who it's for",
+      whoTitle: "Who is it for?",
       whoBody:
-        "Built with neurodivergent users in mind (ADHD, autism, and similar needs): simplicity, continuity, less cognitive load. Anyone who wants a clear record for their doctor can use it too.",
-      whoCredit: "Created from lived experience — not a generic wellness app.",
+        "Built with neurodivergent users in mind (ADHD, autism, and similar needs) but useful for everyone. Built with simplicity, continuity, less friction.",
       tiersTitle: "Free vs Premium",
       freeTitle: "Free",
       free1: "Symptoms, medications, alarms",
@@ -60,8 +59,7 @@
       shotsHint: "Desliza horizontalmente para ver más",
       whoTitle: "Para quién es",
       whoBody:
-        "Pensada para personas neurodivergentes (TDAH, autismo y necesidades similares): simplicidad, continuidad, menos carga cognitiva. También sirve a quien quiera un registro claro para el médico.",
-      whoCredit: "Creada desde experiencia vivida — no es una app genérica de bienestar.",
+        "Pensada para personas neurodivergentes (TDAH, autismo y necesidades similares) pero útil para todos los usuarios. Construida para simplicidad, continuidad, y menos puntos de fricción.",
       tiersTitle: "Gratis vs Premium",
       freeTitle: "Gratis",
       free1: "Síntomas, medicación, alarmas",
@@ -115,7 +113,6 @@
       img.src = `assets/screenshots/${lang}/${num}.png`;
       img.alt = `SymptomTrack screenshot ${i}`;
       img.loading = i <= 2 ? "eager" : "lazy";
-      img.width = 260;
       wrap.appendChild(img);
       gallery.appendChild(wrap);
     }
