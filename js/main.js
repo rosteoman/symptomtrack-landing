@@ -1,499 +1,137 @@
-// ===== MAIN JAVASCRIPT FILE =====
+(function () {
+  const APP_STORE = {
+    en: "https://apps.apple.com/jp/app/symptomtrack/id6751636595?l=en-US",
+    es: "https://apps.apple.com/jp/app/symptomtrack/id6751636595?l=es-ES",
+  };
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initNavigation();
-    initModals();
-    initContactForm();
-    initScrollAnimations();
-    initSmoothScrolling();
-    initFAQ();
-});
+  const STRINGS = {
+    en: {
+      metaDescription:
+        "SymptomTrack — external memory for symptoms and medications. Low friction, private, built for neurodivergent minds.",
+      tagline:
+        "Your external memory for health. Track symptoms and medications with low friction.",
+      sub: "Free for daily use · Premium for export and multiple profiles",
+      download: "Download on the App Store",
+      whatTitle: "What you can do",
+      f1: "Log symptoms with sliders and quick buttons",
+      f2: "Track medications, intakes, and reminders",
+      f3: "Review history and spot patterns over time",
+      f4: "Notes, sleep, and temperature in one place",
+      f5: "Your health data stays on your device",
+      shotsTitle: "Screenshots",
+      shotCaption: "SymptomTrack on iPhone — add your App Store screenshots here",
+      whoTitle: "Who it's for",
+      whoBody:
+        "Built with neurodivergent users in mind (ADHD, autism, and similar needs): simplicity, continuity, less cognitive load. Anyone who wants a clear record for their doctor can use it too.",
+      whoCredit: "Created from lived experience — not a generic wellness app.",
+      tiersTitle: "Free vs Premium",
+      freeTitle: "Free",
+      free1: "Symptoms, medications, alarms",
+      free2: "History and daily tracking",
+      free3: "No full-app lock",
+      premiumTitle: "Premium",
+      premium1: "Export history (MD, TXT, PDF)",
+      premium2: "Multiple profiles (up to 6)",
+      tierNote: "No subscription required to keep using SymptomTrack every day.",
+      videoTitle: "Video",
+      videoSoon: "Tutorial video coming soon.",
+      helpTitle: "Help & manual",
+      helpBody: "User guide will be published here.",
+      legalPrivacy: "Privacy & Terms",
+      contact: "Contact",
+      disclaimer:
+        "SymptomTrack does not provide medical advice. Always consult a healthcare professional.",
+      copyright: "© Babenberg Studies",
+    },
+    es: {
+      metaDescription:
+        "SymptomTrack — memoria externa para síntomas y medicación. Poca fricción, privada, pensada para mentes neurodivergentes.",
+      tagline:
+        "Tu memoria externa de salud. Registra síntomas y medicación con poca fricción.",
+      sub: "Gratis para el uso diario · Premium para exportar y perfiles",
+      download: "Descargar en App Store",
+      whatTitle: "Qué puedes hacer",
+      f1: "Registrar síntomas con sliders y botones rápidos",
+      f2: "Llevar medicación, tomas y recordatorios",
+      f3: "Revisar historial y ver patrones en el tiempo",
+      f4: "Notas, sueño y temperatura en un solo sitio",
+      f5: "Tus datos de salud permanecen en tu dispositivo",
+      shotsTitle: "Capturas",
+      shotCaption: "SymptomTrack en iPhone — añade aquí tus capturas de App Store",
+      whoTitle: "Para quién es",
+      whoBody:
+        "Pensada para personas neurodivergentes (TDAH, autismo y necesidades similares): simplicidad, continuidad, menos carga cognitiva. También sirve a quien quiera un registro claro para el médico.",
+      whoCredit: "Creada desde experiencia vivida — no es una app genérica de bienestar.",
+      tiersTitle: "Gratis vs Premium",
+      freeTitle: "Gratis",
+      free1: "Síntomas, medicación, alarmas",
+      free2: "Historial y seguimiento diario",
+      free3: "Sin bloqueo de la app",
+      premiumTitle: "Premium",
+      premium1: "Exportar historial (MD, TXT, PDF)",
+      premium2: "Varios perfiles (hasta 6)",
+      tierNote: "No hace falta suscripción para seguir usando SymptomTrack cada día.",
+      videoTitle: "Vídeo",
+      videoSoon: "Vídeo tutorial próximamente.",
+      helpTitle: "Ayuda y manual",
+      helpBody: "La guía de usuario se publicará aquí.",
+      legalPrivacy: "Privacidad y términos",
+      contact: "Contacto",
+      disclaimer:
+        "SymptomTrack no ofrece consejo médico. Consulta siempre con un profesional sanitario.",
+      copyright: "© Babenberg Studies",
+    },
+  };
 
-// ===== NAVIGATION =====
-function initNavigation() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+  const LEGAL_URL = "https://rvbservices.wixsite.com/babenberg-studies/legal";
+  const CONTACT_EMAIL = "contact@babenberg-studies.com";
 
-    // Mobile menu toggle
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
+  const stored = localStorage.getItem("st-lang");
+  let lang =
+    stored === "en" || stored === "es"
+      ? stored
+      : navigator.language.startsWith("es")
+        ? "es"
+        : "en";
 
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
+  function t(key) {
+    return STRINGS[lang][key] || STRINGS.en[key] || "";
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", t("metaDescription"));
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (key) el.textContent = t(key);
     });
 
-    // Navbar background on scroll
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-}
-
-// ===== MODALS =====
-function initModals() {
-    const modals = document.querySelectorAll('.modal');
-    const modalTriggers = document.querySelectorAll('[href^="#"]');
-    const closeButtons = document.querySelectorAll('.close');
-
-    // Open modal
-    modalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            const modal = document.querySelector(targetId);
-            
-            if (modal && modal.classList.contains('modal')) {
-                e.preventDefault();
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        });
+    document.querySelectorAll(".btn-app-store").forEach((a) => {
+      a.href = APP_STORE[lang];
     });
 
-    // Close modal with close button
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const modal = this.closest('.modal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-    });
+    document.getElementById("btn-en")?.classList.toggle("active", lang === "en");
+    document.getElementById("btn-es")?.classList.toggle("active", lang === "es");
+  }
 
-    // Close modal clicking outside
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
+  document.getElementById("btn-en")?.addEventListener("click", () => {
+    lang = "en";
+    localStorage.setItem("st-lang", lang);
+    applyLang();
+  });
 
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            modals.forEach(modal => {
-                if (modal.style.display === 'block') {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-    });
-}
+  document.getElementById("btn-es")?.addEventListener("click", () => {
+    lang = "es";
+    localStorage.setItem("st-lang", lang);
+    applyLang();
+  });
 
-// ===== CONTACT FORM =====
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Validate form
-            if (validateForm(data)) {
-                // Show success message
-                showNotification('¡Gracias! Te responderemos pronto.', 'success');
-                
-                // Reset form
-                this.reset();
-                
-                // Here you would typically send the data to your server
-                console.log('Form data:', data);
-                
-                // Example: Send to email service (you'll need to implement this)
-                // sendFormData(data);
-            }
-        });
-    }
-}
+  const legal = document.getElementById("legal-link");
+  if (legal) legal.href = LEGAL_URL;
 
-function validateForm(data) {
-    const requiredFields = ['name', 'email', 'subject', 'message', 'privacy'];
-    
-    for (let field of requiredFields) {
-        if (!data[field] || data[field].trim() === '') {
-            showNotification(`Por favor completa el campo ${field}.`, 'error');
-            return false;
-        }
-    }
-    
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        showNotification('Por favor ingresa un email válido.', 'error');
-        return false;
-    }
-    
-    return true;
-}
+  const contact = document.getElementById("contact-link");
+  if (contact) contact.href = "mailto:" + CONTACT_EMAIL;
 
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 3000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Add to page
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    });
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (document.body.contains(notification)) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    document.body.removeChild(notification);
-                }
-            }, 300);
-        }
-    }, 5000);
-}
-
-// ===== SCROLL ANIMATIONS =====
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.feature-card, .use-case-card, .tutorial-step, .faq-item, .contact-form');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// ===== FAQ ACCORDION =====
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', function() {
-            const isActive = item.classList.contains('active');
-            
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
-            });
-            
-            // Toggle current item
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-}
-
-// ===== SMOOTH SCROLLING =====
-function initSmoothScrolling() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Skip if it's a modal link
-            if (href === '#privacy' || href === '#terms') {
-                return;
-            }
-            
-            e.preventDefault();
-            
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
-// ===== UTILITY FUNCTIONS =====
-
-// Debounce function for performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// ===== ADDITIONAL STYLES FOR NOTIFICATIONS =====
-const notificationStyles = `
-    .notification-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-    
-    .notification-close {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-    }
-    
-    .notification-close:hover {
-        opacity: 0.8;
-    }
-    
-    .animate-in {
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-    
-    .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-bottom: 1px solid var(--light-gray);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-    }
-`;
-
-// Inject notification styles
-const styleSheet = document.createElement('style');
-styleSheet.textContent = notificationStyles;
-document.head.appendChild(styleSheet);
-
-// ===== FORM DATA HANDLING (EXAMPLE) =====
-function sendFormData(data) {
-    // This is where you would implement the actual form submission
-    // Examples:
-    
-    // 1. Send to your own server
-    /*
-    fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        console.log('Success:', result);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-    */
-    
-    // 2. Send to email service (like EmailJS, Formspree, etc.)
-    /*
-    emailjs.send('service_id', 'template_id', {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        subject: data.subject,
-        message: data.message
-    });
-    */
-    
-    // 3. Send to Google Sheets
-    /*
-    const formUrl = 'https://docs.google.com/forms/d/YOUR_FORM_ID/formResponse';
-    const formData = new FormData();
-    formData.append('entry.123456789', data.name);
-    formData.append('entry.987654321', data.email);
-    // ... add other fields
-    
-    fetch(formUrl, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-    });
-    */
-    
-    // For now, just log the data
-    console.log('Form data to be sent:', data);
-}
-
-// ===== PERFORMANCE OPTIMIZATIONS =====
-
-// Optimize scroll events
-const optimizedScrollHandler = throttle(function() {
-    // Any scroll-based functionality can go here
-}, 16); // ~60fps
-
-window.addEventListener('scroll', optimizedScrollHandler);
-
-// Optimize resize events
-const optimizedResizeHandler = debounce(function() {
-    // Any resize-based functionality can go here
-}, 250);
-
-window.addEventListener('resize', optimizedResizeHandler);
-
-// ===== ACCESSIBILITY IMPROVEMENTS =====
-
-// Add keyboard navigation for modals
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-        const modals = document.querySelectorAll('.modal[style*="block"]');
-        modals.forEach(modal => {
-            const focusableElements = modal.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-            
-            if (focusableElements.length > 0) {
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-                
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        });
-    }
-});
-
-// Add ARIA labels for better accessibility
-document.addEventListener('DOMContentLoaded', function() {
-    // Add aria-labels to form inputs
-    const inputs = document.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-        if (!input.getAttribute('aria-label') && !input.getAttribute('id')) {
-            const label = input.previousElementSibling;
-            if (label && label.tagName === 'LABEL') {
-                input.setAttribute('aria-label', label.textContent);
-            }
-        }
-    });
-    
-    // Add aria-expanded to hamburger menu
-    const hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Toggle navigation menu');
-        
-        hamburger.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-        });
-    }
-});
-
-console.log('Symptom Track Landing Page - JavaScript loaded successfully!');
+  applyLang();
+})();

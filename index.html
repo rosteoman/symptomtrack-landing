@@ -1,706 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symptom & Medication Tracking Made Easy</title>
-    <meta name="description" content="Professional iOS app for medication tracking, symptom monitoring, and body temperature control. Completely free with all features included.">
-    <meta name="keywords" content="medication, symptoms, health, iOS, app, tracking, temperature, AI, medical, wellness">
-    <meta name="author" content="Babenberg Studies">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rosteoman.github.io/symptomtrack-landing/">
-    <meta property="og:title" content="Symptom Track - Seguimiento Inteligente de Salud">
-    <meta property="og:description" content="App iOS profesional para seguimiento de medicación, síntomas y temperatura corporal.">
-    <meta property="og:image" content="https://rosteoman.github.io/symptomtrack-landing/images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rosteoman.github.io/symptomtrack-landing/">
-    <meta property="twitter:title" content="Symptom Track - Seguimiento Inteligente de Salud">
-    <meta property="twitter:description" content="App iOS profesional para seguimiento de medicación, síntomas y temperatura corporal.">
-    <meta property="twitter:image" content="https://rosteoman.github.io/symptomtrack-landing/images/og-image.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SymptomTrack — external memory for symptoms and medications.">
+  <meta name="theme-color" content="#000000">
+  <title>SymptomTrack</title>
+  <link rel="icon" href="assets/icon-1024.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icon-1024.png">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/SyTrBlLogo.png" alt="Symptom Track Logo" class="logo-image">
-                <span>Symptom Track</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#use-cases" class="nav-link">Casos de Uso</a>
-                <a href="#tutorial" class="nav-link">Tutorial</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#download" class="nav-link download-btn">Download</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+  <div class="ambient" aria-hidden="true"></div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="highlight">Symptom & Medication Tracking Made Easy</span>
-                </h1>
-                <p class="hero-description">
-                    The most comprehensive iOS app for tracking symptoms, medication intake, temperature changes, and sleep patterns. Everything you need to monitor your health in one powerful, free application.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary">
-                        <i class="fab fa-apple"></i>
-                        Download Free
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        View Features
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">4</span>
-                        <span class="stat-label">Languages</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">6</span>
-                        <span class="stat-label">Core Features</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Free</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="app-preview">
-                            <div class="app-header">
-                                <img src="images/SyTrBlLogo.png" alt="Symptom Track Logo" class="app-logo">
-                                <span>Symptom Track</span>
-                            </div>
-                            <div class="app-content">
-                                <div class="symptom-slider">
-                                    <span>Ansiedad</span>
-                                    <div class="slider-track">
-                                        <div class="slider-fill" style="width: 65%"></div>
-                                    </div>
-                                    <span>6.5</span>
-                                </div>
-                                <div class="medication-grid">
-                                    <div class="med-item taken">D</div>
-                                    <div class="med-item taken">C</div>
-                                    <div class="med-item pending">C</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <img src="assets/logo.png" width="40" height="40" alt="">
+        <span>SymptomTrack</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" id="btn-en" class="active">EN</button>
+        <button type="button" id="btn-es">ES</button>
+      </div>
+    </header>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3>Medication Management</h3>
-                    <p>Control single, twice, three times, or as-needed daily doses. Clear visual states and intelligent reset with interdependent logic.</p>
-                    <ul class="feature-list">
-                        <li>States: Taken, Not taken, Pending</li>
-                        <li>Reset with long press (3 seconds)</li>
-                        <li>Intelligent logic between doses</li>
-                        <li>Custom notes (150 characters)</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Symptom Tracking</h3>
-                    <p>Monitor symptoms with precise sliders and trend charts with customizable colors.</p>
-                    <ul class="feature-list">
-                        <li>Range 0-10 with 0.1 precision</li>
-                        <li>Fully customizable symptoms list</li>
-                        <li>Customizable HEX colors</li>
-                        <li>Daily, weekly and monthly charts</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-thermometer-half"></i>
-                    </div>
-                    <h3>Temperature Record</h3>
-                    <p>Precise body temperature recording with automatic alerts and standard categorization.</p>
-                    <ul class="feature-list">
-                        <li>Range 35.0°C - 42.5°C</li>
-                        <li>Automatic Celsius/Fahrenheit conversion</li>
-                        <li>Alerts for anomalous temperatures</li>
-                        <li>Variation chart</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <h3>Rest Assessment</h3>
-                    <p>Record your sleeping patterns and characteristics for a better health strategy.</p>
-                    <ul class="feature-list">
-                        <li>Sleep duration</li>
-                        <li>Quality assessment</li>
-                        <li>Specific rest terms</li>
-                        <li>Integration with Apple Healthkit from Premium</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3>Alarm System</h3>
-                    <p>Customizable alarms for each medication with specific days and predefined options.</p>
-                    <ul class="feature-list">
-                        <li>Specific schedules per medication</li>
-                        <li>Configurable weekdays</li>
-                        <li>Options: Every day, Weekdays, Weekends</li>
-                        <li>Local system notifications</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Multi-language</h3>
-                    <p>Available in 4 languages with complete localization of all functionalities.</p>
-                    <ul class="feature-list">
-                        <li>Spanish (primary)</li>
-                        <li>English</li>
-                        <li>Japanese</li>
-                        <li>Simplified Chinese</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main id="top">
+      <section class="hero glass" aria-labelledby="hero-title">
+        <img class="hero-logo" src="assets/logo.png" width="88" height="88" alt="SymptomTrack">
+        <h1 id="hero-title">SymptomTrack</h1>
+        <p class="tagline" data-i18n="tagline"></p>
+        <p class="sub" data-i18n="sub"></p>
+        <a class="btn-app-store" href="https://apps.apple.com/jp/app/symptomtrack/id6751636595?l=en-US" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span data-i18n="download"></span>
+        </a>
+      </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Complete Symptom Tracking Solution</h2>
-            <p class="section-subtitle">Everything you need to monitor your health in one powerful app</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Symptom Tracking</h3>
-                    <p>Fully customizable symptoms list with daily, weekly and monthly charts to monitor your health patterns.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3>Medication Management</h3>
-                    <p>Track your medications with customizable schedules, reminders, and detailed intake history.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-thermometer-half"></i>
-                    </div>
-                    <h3>Temperature Record</h3>
-                    <p>Monitor your body temperature with variation charts and automatic trend analysis.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <h3>Sleep Assessment</h3>
-                    <p>Record your sleeping patterns and characteristics for a better health strategy.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3>Smart Alarms</h3>
-                    <p>Never miss a medication with customizable reminders and intelligent scheduling.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Multi-language</h3>
-                    <p>Available in Spanish, English, Chinese, and Japanese for global accessibility.</p>
-                </div>
-            </div>
+      <section class="glass" aria-labelledby="what-title">
+        <div class="section-inner">
+          <h2 id="what-title" data-i18n="whatTitle"></h2>
+          <ul class="feature-list">
+            <li data-i18n="f1"></li>
+            <li data-i18n="f2"></li>
+            <li data-i18n="f3"></li>
+            <li data-i18n="f4"></li>
+            <li data-i18n="f5"></li>
+          </ul>
         </div>
-    </section>
+      </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="section-subtitle">Have questions about Symptom Track? Need support or want to share feedback? We'd love to hear from you.</p>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>How can we help you?</h3>
-                    <ul class="contact-benefits">
-                        <li><i class="fas fa-question-circle"></i> Technical support</li>
-                        <li><i class="fas fa-lightbulb"></i> Feature suggestions</li>
-                        <li><i class="fas fa-bug"></i> Bug reports</li>
-                        <li><i class="fas fa-star"></i> General feedback</li>
-                    </ul>
-                </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Select a subject</option>
-                            <option value="support">Technical Support</option>
-                            <option value="feedback">Feature Feedback</option>
-                            <option value="bug">Bug Report</option>
-                            <option value="general">General Inquiry</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us how we can help you..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="privacy" name="privacy" required>
-                        <label for="privacy">I accept the <a href="#privacy" class="link">privacy policy</a> *</label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
-                    </button>
-                </form>
+      <section class="glass" aria-labelledby="shots-title">
+        <div class="section-inner">
+          <h2 id="shots-title" data-i18n="shotsTitle"></h2>
+          <div class="shots">
+            <div>
+              <div class="shot">
+                <img src="assets/icon-1024.png" alt="" width="320" height="320">
+              </div>
+              <p class="shot-caption" data-i18n="shotCaption"></p>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Download Section -->
-    <section id="download" class="download">
-        <div class="container">
-            <h2 class="section-title">Download Now - Completely Free</h2>
-            <p class="section-subtitle">Start tracking your symptoms and never miss a medication dose</p>
-            
-            <div class="download-content">
-                <div class="download-info">
-                    <h3>Available on App Store</h3>
-                    <p>Download Symptom Track completely free with all features included. No hidden costs, no subscriptions.</p>
-                    
-                    <div class="download-features">
-                        <div class="download-feature">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>iOS 16.0+</span>
-                        </div>
-                        <div class="download-feature">
-                            <i class="fas fa-language"></i>
-                            <span>4 languages</span>
-                        </div>
-                        <div class="download-feature">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>100% private</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="download-button">
-                    <a href="#" class="app-store-btn">
-                        <i class="fab fa-apple"></i>
-                        <div class="app-store-text">
-                            <span>Download on</span>
-                            <strong>App Store</strong>
-                        </div>
-                    </a>
-                </div>
-            </div>
+      <section class="glass" aria-labelledby="who-title">
+        <div class="section-inner">
+          <h2 id="who-title" data-i18n="whoTitle"></h2>
+          <p data-i18n="whoBody"></p>
+          <p class="tier-note" data-i18n="whoCredit"></p>
         </div>
-    </section>
+      </section>
 
-    <!-- Use Cases Section -->
-    <section id="use-cases" class="use-cases">
-        <div class="container">
-            <h2 class="section-title">Casos de Uso Reales</h2>
-            <p class="section-subtitle">Descubre cómo Symptom Track puede ayudarte en diferentes situaciones de salud</p>
-            
-            <div class="use-cases-grid">
-                <div class="use-case-card">
-                    <div class="use-case-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Medicación Crónica</h3>
-                    <p>Para pacientes que necesitan tomar medicamentos diariamente. Symptom Track te ayuda a:</p>
-                    <ul class="use-case-benefits">
-                        <li><i class="fas fa-check"></i> Nunca olvidar una dosis</li>
-                        <li><i class="fas fa-check"></i> Seguir horarios complejos</li>
-                        <li><i class="fas fa-check"></i> Registrar efectos secundarios</li>
-                        <li><i class="fas fa-check"></i> Compartir datos con tu médico</li>
-                    </ul>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">
-                        <i class="fas fa-thermometer-half"></i>
-                    </div>
-                    <h3>Control de Fiebre</h3>
-                    <p>Ideal para padres que necesitan monitorear la temperatura de sus hijos:</p>
-                    <ul class="use-case-benefits">
-                        <li><i class="fas fa-check"></i> Registrar múltiples tomas diarias</li>
-                        <li><i class="fas fa-check"></i> Detectar patrones de fiebre</li>
-                        <li><i class="fas fa-check"></i> Alertas automáticas</li>
-                        <li><i class="fas fa-check"></i> Historial completo para el pediatra</li>
-                    </ul>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <h3>Recuperación Post-operatoria</h3>
-                    <p>Para pacientes en proceso de recuperación después de una cirugía:</p>
-                    <ul class="use-case-benefits">
-                        <li><i class="fas fa-check"></i> Seguimiento de síntomas</li>
-                        <li><i class="fas fa-check"></i> Control de medicación post-op</li>
-                        <li><i class="fas fa-check"></i> Monitoreo de temperatura</li>
-                        <li><i class="fas fa-check"></i> Registro de calidad del sueño</li>
-                    </ul>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <h3>Cuidado de Ancianos</h3>
-                    <p>Para cuidadores que necesitan gestionar la salud de personas mayores:</p>
-                    <ul class="use-case-benefits">
-                        <li><i class="fas fa-check"></i> Múltiples medicamentos</li>
-                        <li><i class="fas fa-check"></i> Recordatorios para cuidadores</li>
-                        <li><i class="fas fa-check"></i> Seguimiento de síntomas crónicos</li>
-                        <li><i class="fas fa-check"></i> Comunicación con familiares</li>
-                    </ul>
-                </div>
+      <section class="glass" aria-labelledby="tiers-title">
+        <div class="section-inner">
+          <h2 id="tiers-title" data-i18n="tiersTitle"></h2>
+          <div class="tier-grid">
+            <div class="tier">
+              <h3 data-i18n="freeTitle"></h3>
+              <ul>
+                <li data-i18n="free1"></li>
+                <li data-i18n="free2"></li>
+                <li data-i18n="free3"></li>
+              </ul>
             </div>
+            <div class="tier">
+              <h3 data-i18n="premiumTitle"></h3>
+              <ul>
+                <li data-i18n="premium1"></li>
+                <li data-i18n="premium2"></li>
+              </ul>
+            </div>
+          </div>
+          <p class="tier-note" data-i18n="tierNote"></p>
         </div>
-    </section>
+      </section>
 
-    <!-- Tutorial Section -->
-    <section id="tutorial" class="tutorial">
-        <div class="container">
-            <h2 class="section-title">Cómo Usar Symptom Track</h2>
-            <p class="section-subtitle">Guía paso a paso para aprovechar al máximo la aplicación</p>
-            
-            <div class="tutorial-steps">
-                <div class="tutorial-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Configuración Inicial</h3>
-                        <p>Al abrir la app por primera vez, configura tu perfil y selecciona tu idioma preferido. La app está disponible en español, inglés, chino y japonés.</p>
-                        <div class="step-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Tip:</strong> Puedes cambiar el idioma en cualquier momento desde Ajustes.</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tutorial-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Agregar Síntomas</h3>
-                        <p>Ve a la sección "Síntomas" y personaliza tu lista. Puedes agregar síntomas predefinidos o crear los tuyos propios con escalas personalizables.</p>
-                        <div class="step-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Tip:</strong> Usa escalas de 1-10 para un seguimiento más preciso.</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tutorial-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Configurar Medicamentos</h3>
-                        <p>En "Mis Medicamentos" agrega cada medicamento con su dosis, frecuencia y horarios. La app te recordará automáticamente cuándo tomarlos.</p>
-                        <div class="step-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Tip:</strong> Puedes configurar recordatorios personalizados para cada medicamento.</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tutorial-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Registrar Datos Diarios</h3>
-                        <p>Usa los sliders para registrar tus síntomas, toma tu temperatura y registra tu sueño. Los datos se guardan automáticamente.</p>
-                        <div class="step-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Tip:</strong> Las notas de temperatura se guardan automáticamente cada 15 segundos.</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tutorial-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Revisar Historial</h3>
-                        <p>En "Historial" puedes ver todos tus registros, notas y tendencias. Toca cualquier entrada para ver detalles completos.</p>
-                        <div class="step-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Tip:</strong> Usa los gráficos para identificar patrones en tu salud.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <section class="glass" aria-labelledby="video-title">
+        <div class="section-inner">
+          <h2 id="video-title" data-i18n="videoTitle"></h2>
+          <div class="video-placeholder" data-i18n="videoSoon"></div>
         </div>
-    </section>
+      </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Preguntas Frecuentes</h2>
-            <p class="section-subtitle">Resolvemos tus dudas sobre Symptom Track</p>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿Es Symptom Track completamente gratuito?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, Symptom Track es completamente gratuito. Todas las funcionalidades están incluidas sin costos ocultos ni suscripciones.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿Mis datos están seguros?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutamente. Todos tus datos se almacenan localmente en tu dispositivo. No se envían a servidores externos, garantizando tu privacidad total.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿Puedo usar la app sin conexión a internet?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, Symptom Track funciona completamente sin internet. Solo necesitas conexión para actualizar la app desde la App Store.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿Cómo puedo exportar mis datos?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Actualmente los datos se almacenan localmente. Estamos trabajando en funcionalidades de exportación para futuras versiones.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿La app está disponible en otros idiomas?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, Symptom Track está disponible en español, inglés, chino y japonés. Puedes cambiar el idioma en cualquier momento desde Ajustes.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>¿Qué versiones de iOS son compatibles?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Symptom Track requiere iOS 16.0 o superior. Es compatible con iPhone y iPad.</p>
-                    </div>
-                </div>
-            </div>
+      <section class="glass" aria-labelledby="help-title">
+        <div class="section-inner">
+          <h2 id="help-title" data-i18n="helpTitle"></h2>
+          <p data-i18n="helpBody"></p>
         </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="images/SyTrBlLogo.png" alt="Symptom Track Logo" class="logo-image">
-                        <span>Symptom Track</span>
-                    </div>
-                    <p>The easiest and most customizable app for everybody to track symptoms and medications.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#use-cases">Casos de Uso</a></li>
-                        <li><a href="#tutorial">Tutorial</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#download">Download</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Use</a></li>
-                        <li><a href="#cookies">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> info@babenbergstudios.com</li>
-                        <li><i class="fas fa-globe"></i> babenbergstudios.com</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Roman Dura Sanz Von Babenberg - Babenberg Studies. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="site-footer">
+      <a class="btn-app-store" href="https://apps.apple.com/jp/app/symptomtrack/id6751636595?l=en-US" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-i18n="download"></span>
+      </a>
+      <nav class="footer-links" aria-label="Legal">
+        <a id="legal-link" href="https://rvbservices.wixsite.com/babenberg-studies/legal" rel="noopener" data-i18n="legalPrivacy"></a>
+        <a id="contact-link" href="mailto:contact@babenberg-studies.com" data-i18n="contact"></a>
+      </nav>
+      <p data-i18n="disclaimer"></p>
+      <p data-i18n="copyright"></p>
     </footer>
+  </div>
 
-    <!-- Privacy Modal -->
-    <div id="privacy" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Política de Privacidad</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <h4>1. Información que Recopilamos</h4>
-                <p>Recopilamos información que usted nos proporciona directamente, como cuando crea una cuenta, utiliza nuestros servicios o se comunica con nosotros.</p>
-                
-                <h4>2. Cómo Utilizamos su Información</h4>
-                <p>Utilizamos la información que recopilamos para proporcionar, mantener y mejorar nuestros servicios, comunicarnos con usted y personalizar su experiencia.</p>
-                
-                <h4>3. Compartir Información</h4>
-                <p>No vendemos, alquilamos ni compartimos su información personal con terceros, excepto como se describe en esta política.</p>
-                
-                <h4>4. Seguridad</h4>
-                <p>Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal.</p>
-                
-                <h4>5. Sus Derechos</h4>
-                <p>Usted tiene derecho a acceder, corregir o eliminar su información personal. Puede ejercer estos derechos contactándonos.</p>
-                
-                <h4>6. Cambios a esta Política</h4>
-                <p>Podemos actualizar esta política de privacidad ocasionalmente. Le notificaremos sobre cualquier cambio significativo.</p>
-                
-                <h4>7. Contacto</h4>
-                <p>Si tiene preguntas sobre esta política de privacidad, contáctenos en info@babenbergstudios.com</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Terms Modal -->
-    <div id="terms" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Términos de Uso</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <h4>1. Aceptación de los Términos</h4>
-                <p>Al utilizar Symptom Track, usted acepta estar sujeto a estos términos de uso.</p>
-                
-                <h4>2. Descripción del Servicio</h4>
-                <p>Symptom Track es una aplicación móvil diseñada para ayudar en el seguimiento de medicación y síntomas. No sustituye el consejo médico profesional.</p>
-                
-                <h4>3. Uso Aceptable</h4>
-                <p>Usted se compromete a utilizar la aplicación solo para fines legales y de acuerdo con estos términos.</p>
-                
-                <h4>4. Limitación de Responsabilidad</h4>
-                <p>La aplicación se proporciona "tal como está" sin garantías. No somos responsables de decisiones médicas basadas en la información de la aplicación.</p>
-                
-                <h4>5. Propiedad Intelectual</h4>
-                <p>Todos los derechos de propiedad intelectual de la aplicación pertenecen a Babenberg Studies.</p>
-                
-                <h4>6. Terminación</h4>
-                <p>Podemos terminar o suspender su acceso a la aplicación en cualquier momento por violación de estos términos.</p>
-                
-                <h4>7. Modificaciones</h4>
-                <p>Nos reservamos el derecho de modificar estos términos en cualquier momento.</p>
-                
-                <h4>8. Contacto</h4>
-                <p>Para preguntas sobre estos términos, contáctenos en info@babenbergstudios.com</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
