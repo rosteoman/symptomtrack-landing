@@ -81,7 +81,7 @@
     },
   };
 
-  const SCREENSHOT_COUNT = 7;
+  const SCREENSHOT_COUNT = 10;
 
   const LEGAL_URL = "https://rvbservices.wixsite.com/babenberg-studies/legal";
   const CONTACT_EMAIL = "contact@babenberg-studies.com";
