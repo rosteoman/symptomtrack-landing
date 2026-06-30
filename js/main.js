@@ -9,7 +9,7 @@
       metaDescription:
         "Babenberg — external memory for symptoms and medications. Low friction, private, built for neurodivergent minds.",
       tagline:
-        "Your external memory for health. Track symptoms and medications with low friction.",
+        "Babenberg is a health diary on iPhone that helps you record with little effort the intensity of what you feel, the specific moments of the day, your medication, and your sleep, so you have a clear history when you visit the doctor and rely less on memory.",
       sub: "Free for daily tracking · Premium for PDF export, health card, and profiles",
       download: "Download on the App Store",
       whatTitle: "What you can do",
@@ -46,7 +46,7 @@
       metaDescription:
         "Babenberg — memoria externa para síntomas y medicación. Poca fricción, privada, pensada para mentes neurodivergentes.",
       tagline:
-        "Tu memoria externa de salud. Registra síntomas y medicación con poca fricción.",
+        "Babenberg es un diario de salud en el iPhone que te ayuda a registrar con poco esfuerzo la intensidad de lo que sientes, los momentos concretos del día, la medicación y el sueño, para que tengas un historial claro cuando visites al médico y no dependas tanto de la memoria.",
       sub: "Gratis para el día a día · Premium para PDF, ficha de salud y perfiles",
       download: "Descargar en App Store",
       whatTitle: "Qué puedes hacer",
